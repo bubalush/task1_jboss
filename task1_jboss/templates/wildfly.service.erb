@@ -4,7 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/wildfly/bin/standalone.sh
+User=<%= @user %>
+Group=<%= @group %>
+ExecStart=<%= @home %>/bin/standalone.sh 
 
 [Install]
 WantedBy=multi-user.target
