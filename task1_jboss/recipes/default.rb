@@ -1,7 +1,7 @@
 jboss_user = "#{node['task1_jboss']['user_jboss']}" 
 jboss_home = "#{node['task1_jboss']['home_jboss']}"
 jboss_group = "#{node['task1_jboss']['group_jboss']}" 
-ver_wildfly = "#{node.default['task1_jboss']['version_wildfly']}"
+ver_wildfly = "#{node['task1_jboss']['version_wildfly']}"
 
 include_recipe "java"
 
