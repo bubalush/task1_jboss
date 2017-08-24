@@ -2,6 +2,7 @@ jboss_user = "#{node['task1_jboss']['user_jboss']}"
 jboss_home = "#{node['task1_jboss']['home_jboss']}"
 jboss_group = "#{node['task1_jboss']['group_jboss']}" 
 ver_wildfly = "#{node['task1_jboss']['version_wildfly']}"
+ip_wildfly = "#{node['network']['interfaces']['enp0s8']['routes'][0]["src"]}"
 
 include_recipe "java"
 
@@ -30,7 +31,7 @@ execute "unzip_jboss" do
   mv /opt/wildfly-#{ver_wildfly} #{jboss_home}
   chown -R #{jboss_user}:#{jboss_group} #{jboss_home}
   chmod -R 775 #{jboss_home}
-  sed -i 's;127.0.0.1;192.168.33.33;g' #{jboss_home}/standalone/configuration/standalone.xml
+  sed -i 's;127.0.0.1;#{ip_wildfly};g' #{jboss_home}/standalone/configuration/standalone.xml
   EOH
   action :nothing
 end
